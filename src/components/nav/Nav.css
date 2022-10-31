@@ -1,0 +1,27 @@
+.navbar{
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 20px 10%;
+}
+
+.navDropdown{
+   display: flex;
+   position: absolute;
+}
+
+.hidden{
+   display: none !important ;
+}
+
+.nav-linked{
+   display: flex;
+   list-style-type: none;
+}
+
+@media screen and (max-width: 1024px) {
+   .navbar{
+      padding: 20px 10px;
+   }
+}

@@ -20,6 +20,11 @@
    list-style-type: none;
 }
 
+.g-d{
+   display: flex;
+   gap: 2rem;
+}
+
 @media screen and (max-width: 1024px) {
    .navbar{
       padding: 20px 10px;

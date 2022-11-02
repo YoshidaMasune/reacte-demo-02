@@ -7,25 +7,23 @@ interface IDrops {
    lists: string[]
 }
 
-interface typeDrop {
-   drops: Array<object>
+interface list {
+  list: string[]
 }
-
-const itemsDorpdown: React.FC<{contens: string[]}> = (props) => {
-   const contents  = props.contens;
+const itemsDorp:React.FC<list> = (props) => {
+   const { list } = props;
    return (
     <nav className="navDropdown">
       <ul className="nav-linked">
-        {contents.map((content, i) => (
-          <li key={i}>{content}</li>
-        ))}
+        {
+          list.map( item => <li>{item}</li>)
+        }
       </ul>
     </nav>
   );
 };
 
 const Dropdowns: React.FC<IDrops> = (props) => {
-  console.log(props);
   
   const [toggle, setToggle] = useState(false)
   return (
@@ -34,9 +32,9 @@ const Dropdowns: React.FC<IDrops> = (props) => {
         className="l"
         onMouseLeave={() => setToggle(false)}
       >
-        For Partners
+        {props.name}
       </div>
-      {/* {toggle ? <Dropdown contents={contents} /> : null} */}
+      <itemsDorp list={props.lists} />
     </div>
   );
 };
@@ -45,14 +43,12 @@ function Navbar() {
   const [toggle, setToggle] = useState(false);
   const Partners = ["Employers", "insurers", "Health Systems",];
 
-  const Dropdown:typeDrop = {
-      drops: [
-         {
-            name: "For Partners",
-            lists: Partners
-         },
-      ]
-   }
+  const Drops:Array<IDrops> = [
+    {
+      name: "For Partners",
+      lists: Partners
+    }
+  ]
 
 
   const link_Logo = `https://assets.website-files.com/631eddfd322acf4bde169f3f/631ef9dda559623779ccc8fa_paytient-logo.svg`;
@@ -65,9 +61,11 @@ function Navbar() {
       <div className="nav">
         <div className="g-d">
           {
-            Dropdown.drops.map( item => <Dropdowns name={item.name} />)
+            Drops.map( item => <Dropdowns name={item.name} lists={item.lists} /> )
           }
         </div>
+
+        
         <div className="btn-login"></div>
       </div>
     </div>

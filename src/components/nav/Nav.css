@@ -6,23 +6,37 @@
    padding: 20px 10%;
 }
 
-.navDropdown{
-   display: flex;
-   position: absolute;
+.nav-dropdown{
+   position: relative;
+   min-width: 100%;
 }
 
-.hidden{
-   display: none !important ;
+.dropdown{
+   position: absolute;
+   top: 40px;
+   display: none;
+}
+
+.border-line{
+   border-top: 2px solid rebeccapurple;
+}
+
+.display{
+   display: block; 
+}
+
+.toggle-link{
+   cursor: pointer;
+   color: rebeccapurple;
+   font-weight: 600;
 }
 
 .nav-linked{
    display: flex;
-   list-style-type: none;
 }
 
-.g-d{
+.nav{
    display: flex;
-   gap: 2rem;
 }
 
 @media screen and (max-width: 1024px) {

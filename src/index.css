@@ -6,3 +6,7 @@
   box-sizing: border-box;
   font-family: 'Mukta', sans-serif;
 }
+
+ul{
+  list-style-type: none;
+}

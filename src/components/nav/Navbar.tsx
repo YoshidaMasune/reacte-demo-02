@@ -1,22 +1,35 @@
 import React, { createRef, useRef, useState } from "react";
 import "./Nav.css";
+import { Link } from 'react-router-dom'
 
+interface navItemt {
+  path: string
+  link: string
+}
 interface DropdownType {
   title: string;
-  navItem: string[];
+  navItem: navItemt[];
 }
 
-function dropdown(item: string[]) {
-  const dropRef:any = createRef();
-  const display = (e:any) => {
+
+function dropdown(item: navItemt[]) {
+  const dropRef: any = createRef();
+  const display = (e: any) => {
     e.target.classList.toggle("display");
-  }
+  };
+
+  // console.log(item);
+  
   return (
     <>
-      <ul ref={dropRef} onMouseEnter={display} onMouseLeave={display} className="">
-        {item.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
+      <ul
+        className="drop-list"
+      >
+        {
+          item.map( i => <li key={i.path}>
+            <Link to={i.path}>{i.link}</Link>
+            </li>)
+        }
       </ul>
     </>
   );
@@ -28,17 +41,15 @@ const NavDorpdown: React.FC<DropdownType> = (props) => {
 
   const toggleDropdown = (e: any) => {
     dropdownRef.current.classList.toggle("display");
-    dropdownRef.current.classList.toggle("border-line")
+    dropdownRef.current.classList.toggle("border-line");
   };
   return (
-    <div className="nav-dropdown">
-      <div
-        className="toggle-link"
-        onMouseEnter={toggleDropdown}
-        onMouseLeave={toggleDropdown}
-      >
-        {props.title}
-      </div>
+    <div
+      className="nav-dropdown"
+      onMouseEnter={toggleDropdown}
+      onMouseLeave={toggleDropdown}
+    >
+      <div className="toggle-link">{props.title}</div>
       <nav ref={dropdownRef} className="dropdown">
         {dropdown(props.navItem)}
       </nav>
@@ -49,12 +60,16 @@ const NavDorpdown: React.FC<DropdownType> = (props) => {
 const DropdownItems: Array<DropdownType> = [
   {
     title: "For Partners",
-    navItem: ["Employers", "Insurers", "Health Systems"],
+    navItem: [{path: "Employers", link: "Employers"}, {path: "Insurers", link: "Insurers"},],
   },
   {
     title: "For Paytients",
-    navItem: ["Start Here", "What is an HPA?"],
+    navItem: [{path: "Employers", link: "Employers"}, {path: "Insurers", link: "Insurers"},],
   },
+  {
+    title: "Resources",
+    navItem: [{path: "Employers", link: "Employers"}, {path: "Insurers", link: "Insurers"},],
+  }
 ];
 
 function Navbar() {
@@ -81,5 +96,7 @@ function Navbar() {
     </div>
   );
 }
+
+export { DropdownItems }
 
 export default Navbar;
